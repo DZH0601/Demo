@@ -23,63 +23,101 @@
 ## 1、登录
 （1）程序设计的任务是先设计出一个登录窗口，输入用户名和密码。
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210628211927110.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyMjU3NjY2,size_16,color_FFFFFF,t_70)
-如果输入错误，会像如图所示输出“用户名或密码输入不正确”的对话框：
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210628212049624.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyMjU3NjY2,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/ea953ded13c747efb823a5cee41b2c21.png)
 
-我给出的代码为了方便调试，用户名和密码全是0，注意运行的是LoginGUI这个类。
+如果输入错误，会像如图所示输出“用户名或密码输入不正确”的对话框。
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/927e23a666304dfdac54ac60ccce214b.png)
+
+
+==我给出的代码为了方便调试，用户名和密码全是0，注意程序入口是LoginGUI类。==
 
 （2）如果正确，则成功登录，进入学生信息管理界面，如图所示：
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20200601133319271.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyMjU3NjY2,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/4bbebdd807b54ebe86a346f463f0ba64.png)
 
 ## 2、添加
 （1）点击“添加”按钮，进入学生信息添加界面：
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20200601133330272.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyMjU3NjY2,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/636daf70b23f4a81827572c043302191.png)
 
-（2）在以上界面输入要添加的学生信息，首先点击“上传照片”按钮，然后弹出如下窗口：
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20200601133343663.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyMjU3NjY2,size_16,color_FFFFFF,t_70)
+（2）在以上界面输入要添加的学生信息，首先点击“上传照片”按钮，然后弹出具有上传照片和下载照片功能的窗口：
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/6648a84fcbfe4829b6cb018365d714f7.png)
 
 （3）点击浏览选项，选择本地文件里需要上传的图片，这里我们选择Taylor Swift的图片，然后点击上传，会显示“上传成功”的对话框。
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20200601133405788.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyMjU3NjY2,size_16,color_FFFFFF,t_70)
 
-（4）可以看到这张图片上传到了本地D:/Config，实现了图片的上传功能。
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210701204901865.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyMjU3NjY2,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/130904522d1f4ea6a49c7d10b8768b3b.png)
 
-（5）也可以点击“下载”这个按钮，会提示下载成功的对话框，如图所示：
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20200601133511775.png)
+（4）可以看到这张图片上传到了本地D:/Test目录下，实现了图片的上传功能。
 
-（6）它会将你的头像下载到你指定的文件夹中，实现了文件的下载功能，如下图所示是将头像下载到E:/QQ浏览器文件这个文件夹里。
-![在这里插入图片描述](https://img-blog.csdnimg.cn/2020060113352915.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyMjU3NjY2,size_16,color_FFFFFF,t_70)
+```java
+	//上传按钮的监听器
+	bUpload.addActionListener(new ActionListener(){
+		public void actionPerformed(ActionEvent e){
+			String fromFileName=tFileName.getText();
+			// 上传的目标目录
+			String toFileName="D:/Test/" + System.currentTimeMillis() + ".png";
+			write(fromFileName, toFileName);
+			JOptionPane.showMessageDialog(jf, "上传成功！", "提示", JOptionPane.WARNING_MESSAGE );
+		}
+	});
+```
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/686c9bb6531646a185bd3d7e4e85fa78.png)
+
+
+
+（5）点击“下载”按钮，先选择电脑上的一个目录，然后输入保存的文件名，这里我依然是打开到D:/Test目录，然后文件名写的是123.png，最后点击打开。
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/546c777a883f41f3bed1a51ea9f12c4c.png)
+
+
+
+（6）它会将显示的头像以你指定的文件名，下载到你指定的目录中，实现了文件的下载功能。
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/a2990ad2853d4c36b1d78e1b23ad9bc1.png)
+
+
 
 （7）然后添加其他的学生信息，如图所示：
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20200601133546461.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyMjU3NjY2,size_16,color_FFFFFF,t_70)
 
-（8）点击“确认”按钮，即可保存学生信息。我们再添加一个女学生的信息，如下图所示：
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20200601133610989.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyMjU3NjY2,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/55a6f6e2693e432e9d9f38d916b366af.png)
 
-（9）然后单击“确定”按钮，此时学生信息添加成功。
+
+（8）点击“确认”按钮，即可保存学生信息。我们再添加一个学生的信息，输入完信息后，点击确认按钮添加成功，如下图所示：
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/5511652db4fc4e318f1ddcccca9c1802.png)
+
 
 ## 3、查询
-（1）在学生管理界面的学生信息列表中点击“查询”按钮，即可显示已经添加的学生信息记录，如图所示：
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20200601133642859.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyMjU3NjY2,size_16,color_FFFFFF,t_70)
+（1）在学生管理界面的学生信息列表中点击“查询”按钮，即可显示已经添加的学生信息记录。第一次点查询是查询学号为空的学生，自然是不存在，第二次查点询则显示所有的学生。这是将全查和查询单个学生的功能放到一起。
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/1c3ce23e5b024d17ba115e4f45f793c7.png)
 
 （2）也可以在“查询”的文本框内输入学号，然后点击“查询”按钮，会跳出所对应的学生记录，如图所示：
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20200601133713114.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyMjU3NjY2,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/944fd66f0a754814ad24445512829846.png)
 
 ## 4、修改
-（1）点击所选的武则天学生记录，再点击“修改”按钮，弹出信息框，修改姓名为“花木兰”，修改手机号为“18816218888”，如图所示：
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20200601133726735.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyMjU3NjY2,size_16,color_FFFFFF,t_70)
+（1）选择张韶涵这条记录，再点击“修改”按钮，弹出对话框，这里我们可以修改除了学号之外的其他学生信息，修改完成后点击确认按钮即可。
 
-（2）点击确认按钮，再点击“查询”按钮进行刷新，显示出修改后的信息，如下图所示：
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20200601133739672.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyMjU3NjY2,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/1a913727052e4259a8fc66fcda01ecf3.png)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/3a52f1e0d6f34de49e52249c61e24841.png)
+
+
+
+（2）再次点击“查询”按钮刷新窗口数据，显示出修改后的信息，如下图所示：
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/fa65c14fea3f48fc8d319be00fbb14df.png)
 
 ## 5、删除
 （1）在学生信息管理系统界面选中某一学生记录，单击“删除”按钮，弹出删除确认界面。如果确认删除，单击“确定”按钮，否则单击“取消”按钮。
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20200601133756223.png)
 
-（2）我们选择学生凯的记录，并点击“删除”按钮，再确定删除，会看到这条记录被删除，仅剩学生花木兰的记录，如图：
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20200601133807985.png)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/8561b8a815f5489b9483d8b9d515406b.png)
+
+（2）我们点击确定按钮，这条学生数据就被删除了。
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/deb3d1cf4d194afe88f3f54b84eeaf40.png)
+
 
 ## 6、退出
 点击右上角的X，将关闭所有程序窗口。
